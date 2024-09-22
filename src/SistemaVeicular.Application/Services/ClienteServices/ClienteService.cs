@@ -1,8 +1,8 @@
 ﻿using SistemaVeicular.Domain.Dtos.ClienteDtos;
 using SistemaVeicular.Domain.Dtos.EnderecoDtos;
 using SistemaVeicular.Domain.Entities;
-using SistemaVeicular.Domain.Interfaces.ApplicationInterfaces;
-using SistemaVeicular.Domain.Interfaces.InfrastructureInterfaces;
+using SistemaVeicular.Domain.Interfaces.ApplicationInterfaces.ClienteInterfaces;
+using SistemaVeicular.Domain.Interfaces.InfrastructureInterfaces.ClienteInterfaces;
 
 namespace SistemaVeicular.Application.Services.ClienteServices;
 public class ClienteService : IClienteService

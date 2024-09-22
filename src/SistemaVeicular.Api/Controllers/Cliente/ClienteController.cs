@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SistemaVeicular.Domain.Dtos.ClienteDtos;
-using SistemaVeicular.Domain.Interfaces.ApplicationInterfaces;
+using SistemaVeicular.Domain.Interfaces.ApplicationInterfaces.ClienteInterfaces;
 
 namespace SistemaVeicular.Api.Controllers.Cliente;
 [Route("api/[controller]")]
@@ -19,6 +19,8 @@ public class ClienteController : ControllerBase
     public async Task<IActionResult> Created(ClienteDto model)
     {
         var cliente = await _clienteService.Created(model);
+
+
 
         return Ok();
     }

@@ -1,5 +1,5 @@
 ﻿using SistemaVeicular.Domain.Entities;
-using SistemaVeicular.Domain.Interfaces.InfrastructureInterfaces;
+using SistemaVeicular.Domain.Interfaces.InfrastructureInterfaces.ClienteInterfaces;
 using SistemaVeicular.Infrastructure.DataAccess;
 
 namespace SistemaVeicular.Infrastructure.Repositories.ClienteRepositories;

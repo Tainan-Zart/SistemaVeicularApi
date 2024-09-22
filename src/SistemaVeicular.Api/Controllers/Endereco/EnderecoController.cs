@@ -1,27 +1,25 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SistemaVeicular.Domain.Dtos.EnderecoDtos;
-using SistemaVeicular.Domain.Interfaces.ApplicationInterfaces;
-using System.Reflection.Metadata.Ecma335;
+using SistemaVeicular.Domain.Interfaces.ApplicationInterfaces.EnderecoInterfaces;
 
 namespace SistemaVeicular.Api.Controllers.Endereco;
 [Route("api/[controller]")]
 [ApiController]
 public class EnderecoController : ControllerBase
 {
-    private IEnderecoService _enderecoService;
+    private readonly IViaCepIntegracao _viaCepIntegracao;
 
-    public EnderecoController(IEnderecoService enderecoService)
+    public EnderecoController(IViaCepIntegracao viaCepIntegracao)
     {
-        _enderecoService = enderecoService;
+        _viaCepIntegracao = viaCepIntegracao;
     }
 
-    [HttpPost]
-    public async Task<IActionResult> Create(EnderecoDto model)
+    [HttpGet("{cep}")]
+    public async Task<ActionResult<EnderecoViaCepDto>> BuscarCep(string cep)
     {
-        var endereco = await _enderecoService.Creted(model);
+       var endereco = await _viaCepIntegracao.ObterDadosViaCep(cep);
 
-        return Ok(endereco);
+       return Ok(endereco);
     }
    
 }

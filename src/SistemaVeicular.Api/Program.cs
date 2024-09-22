@@ -1,13 +1,12 @@
-
-using Microsoft.AspNetCore.Localization;
+using Refit;
 using SistemaVeicular.Application.Services.ClienteServices;
 using SistemaVeicular.Application.Services.EnderecoServices;
-using SistemaVeicular.Domain.Interfaces.ApplicationInterfaces;
-using SistemaVeicular.Domain.Interfaces.InfrastructureInterfaces;
+using SistemaVeicular.Domain.Interfaces.ApplicationInterfaces.ClienteInterfaces;
+using SistemaVeicular.Domain.Interfaces.ApplicationInterfaces.EnderecoInterfaces;
+using SistemaVeicular.Domain.Interfaces.InfrastructureInterfaces.ClienteInterfaces;
 using SistemaVeicular.Infrastructure.DataAccess;
 using SistemaVeicular.Infrastructure.Repositories.ClienteRepositories;
-using SistemaVeicular.Infrastructure.Repositories.EnderecoRepositories;
-using System.Globalization;
+
 
 namespace SistemaVeicular.Api;
 
@@ -23,20 +22,27 @@ public class Program
         builder.Services.AddSwaggerGen();
 
         builder.Services.AddDbContext<SistemaVeicularDbContext>();
+        builder.Services.AddHttpClient<ViaCepEnderecoService>();
 
         #region Injeção Application 
 
-        builder.Services.AddScoped<IEnderecoService,  EnderecoService>();
         builder.Services.AddScoped<IClienteService,  ClienteService>();
-
+        builder.Services.AddScoped<IViaCepIntegracao, ViaCepEnderecoService>();
+       
         #endregion
 
         #region Injeção Infrasctructure 
 
-        builder.Services.AddScoped<IEnderecoRepository, EndereceRepository>();
         builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
 
         #endregion
+
+        builder.Services.AddRefitClient<IViaCepIntegracaoRefit>().ConfigureHttpClient(c =>
+        {
+            c.BaseAddress = new Uri("https://viacep.com.br");
+        });
+
+    
 
         var app = builder.Build();
 

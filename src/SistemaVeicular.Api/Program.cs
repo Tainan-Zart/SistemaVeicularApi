@@ -1,8 +1,10 @@
 using Refit;
 using SistemaVeicular.Application.Services.ClienteServices;
 using SistemaVeicular.Application.Services.EnderecoServices;
+using SistemaVeicular.Application.Services.VeiculoServices;
 using SistemaVeicular.Domain.Interfaces.ApplicationInterfaces.ClienteInterfaces;
 using SistemaVeicular.Domain.Interfaces.ApplicationInterfaces.EnderecoInterfaces;
+using SistemaVeicular.Domain.Interfaces.ApplicationInterfaces.VeiculoInterfaces;
 using SistemaVeicular.Domain.Interfaces.InfrastructureInterfaces.ClienteInterfaces;
 using SistemaVeicular.Infrastructure.DataAccess;
 using SistemaVeicular.Infrastructure.Repositories.ClienteRepositories;
@@ -28,7 +30,9 @@ public class Program
 
         builder.Services.AddScoped<IClienteService,  ClienteService>();
         builder.Services.AddScoped<IViaCepIntegracao, ViaCepEnderecoService>();
-       
+        builder.Services.AddScoped<IIntegracaoApiPlaca, ApiPlacasVeiculoService>();
+    
+
         #endregion
 
         #region Injeção Infrasctructure 
@@ -42,7 +46,11 @@ public class Program
             c.BaseAddress = new Uri("https://viacep.com.br");
         });
 
-    
+        builder.Services.AddRefitClient<IIntegracaoApiPlacaRefit>().ConfigureHttpClient(c =>
+        {
+            c.BaseAddress = new Uri("https://api.consultarplaca.com.br");
+        });
+
 
         var app = builder.Build();
 

@@ -5,7 +5,7 @@ public class Endereco : BaseEntity
 {
     public string Rua { get; set; } = string.Empty;
 
-    public string Numero {  get; set; } = string.Empty;
+    public string Numero { get; set; } = string.Empty;
 
     public string Complemento {  get; set; } = string.Empty;
 
@@ -17,7 +17,15 @@ public class Endereco : BaseEntity
 
     public string CEP {  get; set; } = string.Empty;
 
-    public long ClienteId { get; set; }
+    public long? ClienteId { get; set; }
+
+    public long? EmpresaColetoraId { get; set; }
+
+    public long? TecnicoMecanicoId { get; set; }
 
     public Cliente Cliente { get; set; }
+
+    public EmpresaColetora EmpresaColetora { get; set; }
+
+    public TecnicoMecanico TecnicoMecanico { get; set; }
 }

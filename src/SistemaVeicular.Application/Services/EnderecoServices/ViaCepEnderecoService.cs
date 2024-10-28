@@ -14,6 +14,8 @@ public class ViaCepEnderecoService : IViaCepIntegracao
     {
         var responseData = await _viaCepIntegracaoRefit.ObterDadosViaCep(cep);
 
+
+
         if (responseData != null && responseData.IsSuccessStatusCode)
         {
             return responseData.Content;

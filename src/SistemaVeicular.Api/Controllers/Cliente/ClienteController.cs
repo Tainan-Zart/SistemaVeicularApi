@@ -15,13 +15,11 @@ public class ClienteController : ControllerBase
     }
 
     [HttpPost]
-
-    public async Task<IActionResult> Created(ClienteDto model)
+    [Route("cadastro")]
+    public async Task<IActionResult> Cadastro(ClienteDto model)
     {
-        var cliente = await _clienteService.Created(model);
-
-
-
+        var cliente = await _clienteService.Cadastrar(model);
+        
         return Ok();
     }
 }

@@ -4,11 +4,13 @@ using SistemaVeicular.Domain.Entities;
 namespace SistemaVeicular.Infrastructure.DataAccess;
 public class SistemaVeicularDbContext : DbContext
 {
-    public DbSet<Cliente> Clientes { get; set; }
-    public DbSet<Endereco> Enderecos { get; set; }
-    public DbSet<ServicoManutencao> Manutencoes { get; set; }
-    public DbSet<TecnicoMecanico> Mecanicos { get; set; }
-    public DbSet<Veiculo> Veiculos { get; set; }
+    public DbSet<Cliente> Cliente { get; set; }
+    public DbSet<Endereco> Endereco { get; set; }
+    public DbSet<ServicoManutencao> Manutencoe { get; set; }
+    public DbSet<TecnicoMecanico> Mecanico { get; set; }
+    public DbSet<Veiculo> Veiculo { get; set; }
+    public DbSet<EmpresaColetora> EmpresaColetora {get; set; }
+    public DbSet<Notificacao> Notificacao { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

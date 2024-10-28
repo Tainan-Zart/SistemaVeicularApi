@@ -14,7 +14,7 @@ public class ClienteService : IClienteService
         _clienteRepositoy = clienteRepositoy;
     }
 
-    public async Task<bool> Created(ClienteDto model)
+    public async Task<bool> Cadastrar(ClienteDto model)
     {
         var cliente = new Cliente()
         {
@@ -32,11 +32,11 @@ public class ClienteService : IClienteService
                 Estado = model.Endereco.Estado,
                 CEP = model.Endereco.CEP
             },
-            Observacoes = model.Observacoes,
+            Observacao = model.Observacoes,
             Telefone = model.Telefone,
         };
 
-        return await _clienteRepositoy.Created(cliente);
+        return await _clienteRepositoy.Salvar(cliente);
     }
 
 }

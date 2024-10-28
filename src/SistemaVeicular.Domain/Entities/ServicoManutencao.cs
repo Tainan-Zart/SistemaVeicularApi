@@ -24,5 +24,7 @@ public class ServicoManutencao : BaseEntity
     public TecnicoMecanico TecnicoMecanico { get; set; }
 
     public Veiculo Veiculo { get; set; }
+
+    public Notificacao Notificacao { get; set; }
     
 }

@@ -7,15 +7,15 @@ public class Cliente : BaseEntity
 
     public string CPF { get; set; } = string.Empty;
 
-    public DateTime DataNascimento { get; set; } = DateTime.UtcNow;
+    public DateTime DataNascimento { get; set; }
 
     public string Telefone {  get; set; } = string.Empty;
 
     public string? Email { get; set; }
 
-    public DateTime DataCadastro { get; set; } = DateTime.UtcNow;
+    public DateTime DataCadastro { get; set; }
 
-    public string? Observacoes { get; set; }
+    public string? Observacao { get; set; }
 
     public Endereco Endereco { get; set; }
 

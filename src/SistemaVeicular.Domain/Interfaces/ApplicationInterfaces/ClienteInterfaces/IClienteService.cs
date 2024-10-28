@@ -3,5 +3,5 @@
 namespace SistemaVeicular.Domain.Interfaces.ApplicationInterfaces.ClienteInterfaces;
 public interface IClienteService
 {
-    Task<bool> Created(ClienteDto model);
+    Task<bool> Cadastrar(ClienteDto model);
 }

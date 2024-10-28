@@ -3,5 +3,5 @@
 namespace SistemaVeicular.Domain.Interfaces.InfrastructureInterfaces.ClienteInterfaces;
 public interface IClienteRepository
 {
-    Task<bool> Created(Cliente entity);
+    Task<bool> Salvar(Cliente entity);
 }

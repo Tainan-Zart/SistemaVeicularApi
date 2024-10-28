@@ -12,7 +12,7 @@ public class ClienteRepository : IClienteRepository
         _context = context;
     }
 
-    public async Task<bool> Created(Cliente entity)
+    public async Task<bool> Salvar(Cliente entity)
     {
         try
         {

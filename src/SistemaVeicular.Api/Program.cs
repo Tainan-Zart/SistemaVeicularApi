@@ -1,3 +1,4 @@
+using AutoMapper;
 using Refit;
 using SistemaVeicular.Application.Services.ClienteServices;
 using SistemaVeicular.Application.Services.EnderecoServices;
@@ -50,6 +51,13 @@ public class Program
         {
             c.BaseAddress = new Uri("https://api.consultarplaca.com.br");
         });
+
+        MapperConfiguration mapperConfiguration = new MapperConfiguration(mapperConfiguration =>
+        {
+            mapperConfiguration.AddMaps(new[] { "SistemaVeicular.Application" });
+
+        });
+        builder.Services.AddSingleton(mapperConfiguration.CreateMapper());
 
 
         var app = builder.Build();

@@ -22,4 +22,23 @@ public class ClienteController : ControllerBase
         
         return Ok();
     }
+   
+    [HttpGet]
+    [Route("buscar-por-id")]
+    public async Task<IActionResult> BuscarPorId([FromBody]BuscaClienteIdDTo model)
+    {
+        var cliente = await _clienteService.BuscarPorId(model);
+        return Ok(cliente);
+    }
+
+    [HttpGet]
+    [Route("buscar-todos")]
+
+    public async Task<IActionResult> BuscarTodos()
+    {
+        var clientes = await _clienteService.BuscarTodos();
+
+        return Ok(clientes);
+    }
+    
 }

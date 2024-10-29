@@ -13,9 +13,7 @@ public class Cliente : BaseEntity
 
     public string? Email { get; set; }
 
-    public DateTime DataCadastro { get; set; }
-
-    public string? Observacao { get; set; }
+    public DateTime DataCadastro { get; set; } = DateTime.UtcNow;
 
     public Endereco Endereco { get; set; }
 

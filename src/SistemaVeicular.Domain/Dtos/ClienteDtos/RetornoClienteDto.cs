@@ -1,9 +1,9 @@
 ﻿using SistemaVeicular.Domain.Dtos.EnderecoDtos;
-using SistemaVeicular.Domain.Entities;
 
 namespace SistemaVeicular.Domain.Dtos.ClienteDtos;
-public class ClienteDto
+public class RetornoClienteDto
 {
+    public long ClienteId { get; set; }
     public string Nome { get; set; } = string.Empty;
 
     public string Sobrenome { get; set; } = string.Empty;

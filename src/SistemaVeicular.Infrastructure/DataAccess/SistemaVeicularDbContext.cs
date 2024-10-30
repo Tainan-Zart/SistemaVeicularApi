@@ -14,6 +14,8 @@ public class SistemaVeicularDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseNpgsql("Server=127.0.0.1;Port=5432;Database=SistemaVeicular;User Id=postgres;Password=admin;");
+        //optionsBuilder.UseNpgsql("Server=127.0.0.1;Port=5432;Database=SistemaVeicular;User Id=admin;Password=postgres;");
+        optionsBuilder.UseNpgsql("server=localhost;username=postgres;database=SistemaVeicular;Password=postgres");
     }
 }
+

@@ -37,4 +37,9 @@ public class ClienteService : IClienteService
         return response;
     }
 
+    public async Task Deletar(DeletarClienteDTO model)
+    {
+        await _clienteRepositoy.Excluir(model.Id);
+    }
+
 }

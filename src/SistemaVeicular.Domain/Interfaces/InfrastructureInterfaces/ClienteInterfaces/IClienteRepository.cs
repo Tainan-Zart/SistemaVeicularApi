@@ -8,7 +8,7 @@ public interface IClienteRepository
 
     Task<List<Cliente>> BuscarTodos();
 
-    Task<bool> Excluir(BuscaClienteIdDTo model);
+    Task<bool> Excluir(List<long> ids);
     Task<List<Cliente>> BuscarPorId(BuscaClienteIdDTo model);
 
     

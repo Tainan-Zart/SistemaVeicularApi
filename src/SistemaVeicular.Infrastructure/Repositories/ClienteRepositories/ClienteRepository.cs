@@ -3,7 +3,6 @@ using SistemaVeicular.Domain.Dtos.ClienteDtos;
 using SistemaVeicular.Domain.Entities;
 using SistemaVeicular.Domain.Interfaces.InfrastructureInterfaces.ClienteInterfaces;
 using SistemaVeicular.Infrastructure.DataAccess;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace SistemaVeicular.Infrastructure.Repositories.ClienteRepositories;
 public class ClienteRepository : IClienteRepository
@@ -19,16 +18,33 @@ public class ClienteRepository : IClienteRepository
     {
         try
         {
-          await _context.AddAsync(entity);
-          await _context.SaveChangesAsync();
-          return true;
+            if (entity.Id == 0)
+            {
+                await _context.AddAsync(entity);
+            }
+            else
+            {
+                var clienteExistente = await _context.Cliente
+                    .Include(c => c.Endereco)
+                    .FirstOrDefaultAsync(c => c.Id == entity.Id);
 
+                clienteExistente.Nome = entity.Nome;
+                clienteExistente.Sobrenome = entity.Sobrenome;
+                clienteExistente.Telefone = entity.Telefone;
+                clienteExistente.CPF = entity.CPF;
+                clienteExistente.Email = entity.Email;
+                clienteExistente.DataNascimento = entity.DataNascimento;
+                clienteExistente.Endereco = entity.Endereco;
+                
+                _context.Cliente.Update(clienteExistente);
+            }
+            await _context.SaveChangesAsync();
+            return true;
         }
         catch (Exception ex)
         {
-           
-            throw new Exception(ex.InnerException?.Message);
-            
+
+            throw new Exception(ex.InnerException?.Message ?? ex.Message);
         }
     }
 
@@ -46,23 +62,34 @@ public class ClienteRepository : IClienteRepository
         return await _context.Cliente.ToListAsync();
     }
 
-    public async Task<bool> Excluir(BuscaClienteIdDTo model)
+    public async Task<bool> Excluir(List<long> id)
     {
         try
         {
-            var cliente =  await BuscarPorId(model);
-            _context.Remove(cliente);
-            _context.SaveChanges();
-            return true;
 
+            var clientes = await _context.Cliente
+                .Include(cliente => cliente.Endereco)
+                .Where(cliente => id.Contains(cliente.Id))
+                .ToListAsync();
+
+            foreach (var cliente in clientes)
+            {
+
+                _context.Endereco.Remove(cliente.Endereco);
+
+            }
+
+            _context.Cliente.RemoveRange(clientes);
+            await _context.SaveChangesAsync();
+            return true;
         }
-        catch
+        catch 
         {
             return false;
         }
-        
     }
 }
+
 
 
 

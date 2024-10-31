@@ -1,10 +1,9 @@
 ﻿using SistemaVeicular.Domain.Dtos.EnderecoDtos;
-using SistemaVeicular.Domain.Entities;
 
 namespace SistemaVeicular.Domain.Dtos.ClienteDtos;
-public class ClienteDto
+public class AtualizarClienteDTo
 {
-    public long? Id { get; set; }
+    public long Id { get; set; }
     public string Nome { get; set; } = string.Empty;
 
     public string Sobrenome { get; set; } = string.Empty;
@@ -18,5 +17,4 @@ public class ClienteDto
     public string? Email { get; set; }
 
     public EnderecoDto Endereco { get; set; }
-
 }

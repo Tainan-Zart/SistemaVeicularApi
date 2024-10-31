@@ -19,11 +19,21 @@ public class ClienteController : ControllerBase
     public async Task<IActionResult> Cadastro(ClienteDto model)
     {
         var cliente = await _clienteService.Cadastrar(model);
-        
-        return Ok();
+
+        return NoContent();
+    }
+
+    [HttpPost]
+    [Route("atualizar")]
+
+    public async Task<IActionResult> Atualizar(ClienteDto model)
+    {
+        var cliente = await _clienteService.Cadastrar(model);
+
+        return NoContent();
     }
    
-    [HttpGet]
+    [HttpPost]
     [Route("buscar-por-id")]
     public async Task<IActionResult> BuscarPorId([FromBody]BuscaClienteIdDTo model)
     {
@@ -40,5 +50,16 @@ public class ClienteController : ControllerBase
 
         return Ok(clientes);
     }
+
+    [HttpDelete]
+    [Route("deletar")]
+
+    public async Task<IActionResult> Deletar(DeletarClienteDTO model)
+    {
+        await _clienteService.Deletar(model);
+        return NoContent(); 
+    }
+
+
     
 }

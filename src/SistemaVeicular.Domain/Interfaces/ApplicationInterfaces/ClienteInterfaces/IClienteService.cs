@@ -7,5 +7,7 @@ public interface IClienteService
 
     Task<List<RetornoClienteDto>> BuscarTodos();
 
+    Task Deletar(DeletarClienteDTO model);
+
     Task<List<RetornoClienteDto>> BuscarPorId(BuscaClienteIdDTo model);
 }
